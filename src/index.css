@@ -1,6 +1,9 @@
 .huge-button {
   /*display: block !important;*/
   text-transform: none !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+  
 }
 
 /*.question-block {
