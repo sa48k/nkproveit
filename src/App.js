@@ -27,28 +27,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class YearMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {hide: false};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({hide: true});
+  }
+
   render() {
     return (
-      <Container maxWidth="sm">
-        <ThemeProvider theme={theme}>
-          <Grid container spacing={1}>
-            <YearButton year="3" />
-            <YearButton year="5" />
-            <YearButton year="7" />
-          </Grid>
-          <Grid container spacing={1}>
-            <YearButton year="4"/>
-            <YearButton year="6"/>
-            <YearButton year="8"/>
-          </Grid>
-        </ThemeProvider>
-      </Container>
-    );
+      !this.state.hide ? 
+        <Container maxWidth="sm">
+          <ThemeProvider theme={theme}>
+            <Grid container spacing={1}>
+              <YearButton year="3" onClick={this.handleClick} />
+              <YearButton year="5" />
+              <YearButton year="7" />
+            </Grid>
+            <Grid container spacing={1}>
+              <YearButton year="4"/>
+              <YearButton year="6"/>
+              <YearButton year="8"/>
+            </Grid>
+          </ThemeProvider>
+        </Container>
+        :
+        <h1>honk</h1>
+      );
   }
 }
 
 export default function App() {
   return (
+    <Container maxWidth="sm">
     <YearMenu />
-  );
+    <br />
+    <YearGoals />
+    </Container>
+    );
 }
