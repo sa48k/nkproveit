@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -26,48 +26,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-class YearMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {hide: false};
 
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-  }
+function YearMenu(props) {
+  return (
+      <Container maxWidth="sm">
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={1}>
+            <YearButton year="3" handleClick={props.handleClick} />
+            <YearButton year="5" />
+            <YearButton year="7" />
+          </Grid>
+          <Grid container spacing={1}>
+            <YearButton year="4"/>
+            <YearButton year="6"/>
+            <YearButton year="8"/>
+          </Grid>
+        </ThemeProvider>
+      </Container>
+  );
+}
 
-  handleClick() {
-    this.setState({hide: true});
-  }
-
-  render() {
-    return (
-      !this.state.hide ? 
-        <Container maxWidth="sm">
-          <ThemeProvider theme={theme}>
-            <Grid container spacing={1}>
-              <YearButton year="3" onClick={this.handleClick} />
-              <YearButton year="5" />
-              <YearButton year="7" />
-            </Grid>
-            <Grid container spacing={1}>
-              <YearButton year="4"/>
-              <YearButton year="6"/>
-              <YearButton year="8"/>
-            </Grid>
-          </ThemeProvider>
-        </Container>
-        :
-        <h1>honk</h1>
-      );
-  }
+function Header() {
+  return (
+    <a href="/">
+      <Typography variant="h5" align="center">
+        nkproveit
+      </Typography>
+    </a>
+  );
 }
 
 export default function App() {
-  return (
-    <Container maxWidth="sm">
-    <YearMenu />
-    <br />
-    <YearGoals />
-    </Container>
+  const [yearmenu, setYearmenu] = useState(true);
+
+    return (
+      <Container maxWidth="sm">
+        <Header />
+        <br />
+        {yearmenu ?
+          <YearMenu handleClick={() => setYearmenu(false)} />
+        :
+        <YearGoals />}
+      </Container>
     );
-}
+};
