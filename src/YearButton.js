@@ -4,12 +4,13 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 export default function YearButton(props) {
+  let yr = props.year;
   return (
     <Grid item xs={4}>
-      <Button fullWidth={true} onClick={props.handleClick}
+      <Button fullWidth={true} id={yr} onClick={props.handleYearClick}
        className="huge-button" variant="contained" color="primary">
         <Typography variant="h5" align="center">
-          Year {props.year}
+          Year {yr}
         </Typography>
       </Button>
     </Grid>

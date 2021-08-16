@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function YearGoals() {
+export default function YearGoals(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+      <h1>Year {props.year}</h1>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
