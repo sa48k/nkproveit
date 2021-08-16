@@ -7,7 +7,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import './index.css';
-import { CSSTransitionGroup } from 'react-transition-group'
+import { motion, AnimatePresence } from "framer-motion"
 
 import YearButton from './YearButton.js';
 import YearGoals from './Accordion.js';
@@ -71,25 +71,29 @@ export default function App() {
     <Container maxWidth="sm">
       <Header onClick={() => setYearmenu(true)} />
       <br />
-      {yearmenu ?
-        
-        <CSSTransitionGroup 
-        transitionName="example"
-         transitionAppear={true}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-        
-          <YearMenu handleYearClick={handleYearClick} />
-        
-        </CSSTransitionGroup>
-      :
-      <CSSTransitionGroup 
-        transitionName="example"
-         
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-      <YearGoals year={goalsYear} />
-       </CSSTransitionGroup>}
+      
+      
+      {yearmenu && 
+          <AnimatePresence>
+            <motion.div 
+            key="yearmenu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
+              <YearMenu handleYearClick={handleYearClick} />
+            </motion.div>
+          </AnimatePresence>}
+      {!yearmenu && 
+        <AnimatePresence>
+          <motion.div 
+          key="acc"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}>
+            <YearGoals year={goalsYear} />
+         </motion.div>
+       </AnimatePresence>
+      }
     </Container>
   );
 };
