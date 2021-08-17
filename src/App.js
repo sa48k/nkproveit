@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function YearMenu(props) {
   return (
       <Container maxWidth="sm">
+
         <ThemeProvider theme={theme}>
           <Grid container spacing={1}>
             <YearButton year="3" handleYearClick={props.handleYearClick} />
@@ -71,8 +72,6 @@ export default function App() {
     <Container maxWidth="sm">
       <Header onClick={() => setYearmenu(true)} />
       <br />
-      
-      
       {yearmenu && 
           <AnimatePresence>
             <motion.div 

@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 class Y3NumSeq(Resource):
     def get(self, id):

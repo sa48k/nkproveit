@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';import { makeStyles } from '@material-ui/core/styles';
+import axios from "axios";
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -18,6 +18,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function YearGoals(props) {
   const classes = useStyles();
+  const [yearLevel, setYearLevel] = useState(0);
+
+  const url = 'http://127.0.0.1:5000/y3/numseq4';
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      console.log(response.data);
+    });
+  }, []);
+
 
   return (
     <div className={classes.root}>
