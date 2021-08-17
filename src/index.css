@@ -3,7 +3,13 @@
   text-transform: none !important;
   padding-top: 2rem !important;
   padding-bottom: 2rem !important;
-  
+}
+
+.big-button {
+  /*display: block !important;*/
+  text-transform: none !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 
 /*.question-block {
@@ -19,7 +25,7 @@ h4 {
   font-family: 'Open Sans', sans-serif;
 }
 
-h5 {
+h5 h6 {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
