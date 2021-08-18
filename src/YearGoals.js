@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';import { makeStyles } from '@material-ui/core/styles';
-import axios from "axios";
 import Button from '@material-ui/core/Button';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -19,13 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function YearGoals(props) {
   const classes = useStyles();
-
-  const url = 'http://127.0.0.1:5000/y' + props.year + '/numseq4';
-  useEffect(() => {
-    axios.get(url).then((response) => {
-      console.log(response.data);
-    });
-  }, []);
 
   function GoalButton(props) {
     return (
