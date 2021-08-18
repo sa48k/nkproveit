@@ -12,6 +12,10 @@
   padding-bottom: 1rem !important;
 }
 
+body {
+  background-color:  #efefff;
+}
+
 /*.question-block {
   display: block !important;
   height:  8em !important;

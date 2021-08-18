@@ -6,6 +6,11 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
+class getGoals(Resource):
+    def get(self, id):
+        return "honk"
+        # TODO: build API to return the goals for each of the dive categories at each level
+
 class Y3NumSeq(Resource):
     def get(self, id):
         if id == 4:
@@ -21,6 +26,7 @@ class Y3NumSeq(Resource):
             return "HONK"
         
 api.add_resource(Y3NumSeq, '/y3/numseq<int:id>')
+api.add_resource(getGoals, '/getgoals/y<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

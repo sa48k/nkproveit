@@ -13,13 +13,12 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(16),
-    fontWeight: theme.typography.fontWeightBold,
+    fontWeight: theme.typography.fontWeightLight,
   },
 }));
 
 export default function YearGoals(props) {
   const classes = useStyles();
-  // const [yearLevel, setYearLevel] = useState(0);
 
   const url = 'http://127.0.0.1:5000/y' + props.year + '/numseq4';
   useEffect(() => {
@@ -31,8 +30,8 @@ export default function YearGoals(props) {
   function GoalButton(props) {
     return (
       <AccordionDetails>
-        <Button fullWidth={true} className="big-button" variant="contained" color="primary">
-          <Typography align="left" variant="body2" >
+        <Button onClick={props.handleGoalClick} id={props.id} fullWidth={true} className="big-button" variant="contained" color="primary">
+          <Typography align="left" variant="body2">
             {props.text}
           </Typography>
         </Button>
@@ -50,7 +49,7 @@ export default function YearGoals(props) {
           id="panel1a-header">
           <Typography className={classes.heading}>Number Identification</Typography>
         </AccordionSummary>
-        <GoalButton text="Identify and write numbers to 1,000" />
+        <GoalButton {...props} id="1" text="Identify and write numbers to 1,000" />
       </Accordion>
       <Accordion>
         <AccordionSummary
@@ -59,10 +58,10 @@ export default function YearGoals(props) {
           id="panel2a-header">
           <Typography className={classes.heading}>Number Sequence and Order</Typography>
         </AccordionSummary>
-        <GoalButton text="Count forwards and say the number one, ten and a hundred after" />
-        <GoalButton text="Count forwards and say the number one, ten and a hundred before" />
-        <GoalButton text="Order numbers" />
-        <GoalButton text="Round three-digit numbers to the nearest ten and hundred" />
+        <GoalButton {...props} id="2" text="Count forwards and say the number one, ten and a hundred after" />
+        <GoalButton {...props} id="3" text="Count forwards and say the number one, ten and a hundred before" />
+        <GoalButton {...props} id="4" text="Order numbers" />
+        <GoalButton {...props} id="5" text="Round three-digit numbers to the nearest ten and hundred" />
       </Accordion>
       <Accordion>
         <AccordionSummary
@@ -71,8 +70,8 @@ export default function YearGoals(props) {
           id="panel3a-header">
           <Typography className={classes.heading}>Place Value</Typography>
         </AccordionSummary>
-        <GoalButton text="Explain the place value of hundreds" />
-        <GoalButton text="Recall the number of tens and hundreds in three-digit numbers" />
+        <GoalButton id="6" text="Explain the place value of hundreds" />
+        <GoalButton id="7" text="Recall the number of tens and hundreds in three-digit numbers" />
       </Accordion>
       <Accordion>
         <AccordionSummary
@@ -84,6 +83,16 @@ export default function YearGoals(props) {
         <GoalButton text="Recall addition facts to 20" />
         <GoalButton text="Recall subtraction facts to 20" />
         <GoalButton text="Recall groupings within 100 - multiples of 5" />
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header">
+          <Typography className={classes.heading}>Fractions</Typography>
+        </AccordionSummary>
+        <GoalButton text="Identify, write and draw the symbols for most common fractions" />
+        <GoalButton text="Orders fractions with like denominators" />
       </Accordion>
     </div>
   );
