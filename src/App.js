@@ -18,8 +18,8 @@ const theme = createTheme({
 });
 
 export default function App() {
-  const [yearmenu, setYearmenu] = useState(true);
-  const [goalsmenu, setGoalsMenu] = useState(false);
+  const [yearmenu, setYearmenu] = useState(false);
+  const [goalsmenu, setGoalsMenu] = useState(true);
   const [showquiz, setShowQuiz] = useState(false);
   const [goalsYear, setGoalsYear] = useState(3);
   

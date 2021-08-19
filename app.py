@@ -15,11 +15,11 @@ class Y3NumSeq(Resource):
     def get(self, id):
         if id == 4:
             questions = [
-                {'What is 172 rounded to the nearest ten?': '170'},
-                {'What is 537 rounded to the nearest ten?': '540'},
-                {'What is 481 rounded to the nearest hundred?': '500'},
-                {'What is 841 rounded to the nearest hundred?': '800'},
-                {'What is 652 rounded to the nearest hundred?': '700'},
+                {'qtext': 'What is 172 rounded to the nearest ten?', 'a': '170'},
+                {'qtext': 'What is 537 rounded to the nearest ten?', 'a':  '540'},
+                {'qtext': 'What is 481 rounded to the nearest hundred?', 'a':  '500'},
+                {'qtext': 'What is 841 rounded to the nearest hundred?', 'a':  '800'},
+                {'qtext': 'What is 652 rounded to the nearest hundred?', 'a':  '700'},
             ]
             return jsonify(questions)
         else:
