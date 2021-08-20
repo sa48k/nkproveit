@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,8 @@ export default function Quiz(props) {
     return (
       <div>
         <Typography className={classes.heading}>
-          Question {currentQuestion+1}
+        {console.log(currentQuestion)}
+          Question {currentQuestion+1}{questions && '/' + questions.length}
         </Typography>
         <br />
         <Typography align="left" variant="body2">
@@ -44,13 +46,36 @@ export default function Quiz(props) {
     )
   }
 
+  function AnswerForm(props) {
+    const [answer, setAnswer] = useState();
+
+    function handleChange(e) {
+      setAnswer(e.target.value);
+    }
+
+    function handleSubmit(e) {
+      alert('A name was submitted: ' + answer);
+      e.preventDefault();
+    }
+
+    return (
+      <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+        <TextField value={answer} onChange={handleChange} id="outlined-basic" label="Answer" variant="outlined" />
+        <Button variant="contained" color="primary" size="large">Go</Button>
+      
+      </form>
+    );
+  }
+
   return (
     <Card elevation={3}>
       <CardContent>
         <Question {...props} />
+        <br />
+        <AnswerForm />
       </CardContent>
       <CardActions>
-        <Button size="small">Next</Button>
+        <Button variant="contained" color="primary" size="small">Next</Button>
       </CardActions>
     </Card>
     );
