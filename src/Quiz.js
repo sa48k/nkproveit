@@ -7,6 +7,9 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import TextField from '@material-ui/core/TextField';
+import { spacing } from '@material-ui/system';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,11 +62,10 @@ export default function Quiz(props) {
     }
 
     return (
-      <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-        <TextField value={answer} onChange={handleChange} id="outlined-basic" label="Answer" variant="outlined" />
-        <Button variant="contained" color="primary" size="large">Go</Button>
-      
-      </form>
+        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+          <TextField size="small" value={answer} onChange={handleChange} id="outlined-basic" label="Answer" variant="outlined" />
+          <Button type="submit" variant="contained" color="primary" size="normal">Go</Button>
+        </form>
     );
   }
 
@@ -75,7 +77,7 @@ export default function Quiz(props) {
         <AnswerForm />
       </CardContent>
       <CardActions>
-        <Button variant="contained" color="primary" size="small">Next</Button>
+       
       </CardActions>
     </Card>
     );
