@@ -2,6 +2,7 @@ import React , { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -9,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent'
 import TextField from '@material-ui/core/TextField';
 import { spacing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +25,8 @@ export default function Quiz(props) {
   const classes = useStyles();
   const [questions, setQuestions] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
   const url = 'http://127.0.0.1:5000/y3/numseq4';
 
   useEffect(() => {
@@ -49,6 +51,22 @@ export default function Quiz(props) {
     )
   }
 
+  function Score(props) {
+    return (
+      <Typography align="center" className={classes.heading}>
+        Score: {score} out of {questions.length}
+      </Typography>
+    );
+  }
+
+  function HeroUpload(props) {
+    return (
+      <Box textAlign='center'>
+        <Button variant="contained" color="warning" size="normal">Upload to Hero</Button>
+      </Box>
+    );
+  }
+
   function AnswerForm(props) {
     const [answer, setAnswer] = useState();
 
@@ -57,7 +75,14 @@ export default function Quiz(props) {
     }
 
     function handleSubmit(e) {
-      alert('A name was submitted: ' + answer);
+      if (answer === questions[currentQuestion].answer) {
+        setScore(score + 1);
+      }
+      if (currentQuestion+1 < questions.length) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setShowScore(true);
+      }
       e.preventDefault();
     }
 
@@ -69,15 +94,31 @@ export default function Quiz(props) {
     );
   }
 
+  function CardBody(props) {
+    const body = showScore ? 
+      <><Score />
+      <br />
+      <HeroUpload /></>
+        : 
+      <><Question {...props} />
+      <br />
+      <AnswerForm /></>
+    return (
+      <div>
+          {body}
+      </div>
+    );
+  }
+
   return (
     <Card elevation={3}>
       <CardContent>
-        <Question {...props} />
-        <br />
-        <AnswerForm />
+       
+          <CardBody />
+       
       </CardContent>
       <CardActions>
-       
+
       </CardActions>
     </Card>
     );
