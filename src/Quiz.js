@@ -8,8 +8,10 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import TextField from '@material-ui/core/TextField';
-import { spacing } from '@material-ui/system';
-import Grid from '@material-ui/core/Grid';
+import { motion, AnimatePresence } from "framer-motion"
+import Avatar from "@material-ui/core/Avatar";
+import Score from './Score.js';
+import HeroUpload from './HeroUpload.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,8 +41,7 @@ export default function Quiz(props) {
     return (
       <div>
         <Typography className={classes.heading}>
-        {console.log(currentQuestion)}
-          Question {currentQuestion+1}{questions && '/' + questions.length}
+          Question {currentQuestion+1}{questions && (' of ' + questions.length)}
         </Typography>
         <br />
         <Typography align="left" variant="body2">
@@ -49,22 +50,6 @@ export default function Quiz(props) {
         <br />
       </div>
     )
-  }
-
-  function Score(props) {
-    return (
-      <Typography align="center" className={classes.heading}>
-        Score: {score} out of {questions.length}
-      </Typography>
-    );
-  }
-
-  function HeroUpload(props) {
-    return (
-      <Box textAlign='center'>
-        <Button variant="contained" color="warning" size="normal">Upload to Hero</Button>
-      </Box>
-    );
   }
 
   function AnswerForm(props) {
@@ -88,21 +73,26 @@ export default function Quiz(props) {
 
     return (
         <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-          <TextField size="small" value={answer} onChange={handleChange} id="outlined-basic" label="Answer" variant="outlined" />
+          <TextField autoFocus size="small" value={answer} onChange={handleChange} id="outlined-basic" label="Answer" variant="outlined" />
           <Button type="submit" variant="contained" color="primary" size="normal">Go</Button>
         </form>
     );
   }
 
   function CardBody(props) {
-    const body = showScore ? 
-      <><Score />
-      <br />
-      <HeroUpload /></>
-        : 
-      <><Question {...props} />
-      <br />
-      <AnswerForm /></>
+    const body = 
+      showScore ? 
+        <>
+          <Score score={score} max={questions.length} time={13}/>
+          <br />
+          <HeroUpload />
+        </>
+      : 
+        <>
+          <Question {...props} />
+          <br />
+          <AnswerForm />
+        </>
     return (
       <div>
           {body}
@@ -111,11 +101,9 @@ export default function Quiz(props) {
   }
 
   return (
-    <Card elevation={3}>
+    <Card elevation={2}>
       <CardContent>
-       
-          <CardBody />
-       
+        <CardBody />
       </CardContent>
       <CardActions>
 

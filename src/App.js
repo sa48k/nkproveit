@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import orange from '@material-ui/core/colors/orange';
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from 'framer-motion';
 import './index.css';
 
 import Header from './Header.js';
