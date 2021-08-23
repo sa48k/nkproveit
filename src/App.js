@@ -40,7 +40,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Container maxWidth="sm">
         <Header onClick={() => {setYearmenu(true); setGoalsMenu(false); setShowQuiz(false);}} />
-        <br />
+        
         {yearmenu && 
           <AnimatePresence>
             <motion.div key="yrmenu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
