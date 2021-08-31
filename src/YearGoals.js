@@ -23,7 +23,7 @@ export default function YearGoals(props) {
   function GoalButton(props) {
     return (
       <AccordionDetails>
-        <Button onClick={props.handleGoalClick} id={props.id} fullWidth={true} className="big-button" variant="contained" color="primary">
+        <Button onClick={props.handleGoalClick} id={props.id} fullWidth={true} className="big-button" variant="contained" color={props.color}>
           <Typography align="left" variant="body2">
             {props.text}
           </Typography>
@@ -42,7 +42,7 @@ export default function YearGoals(props) {
           id="panel1a-header">
           <Typography className={classes.heading}>Number Identification</Typography>
         </AccordionSummary>
-        <GoalButton {...props} id="1" text="Identify and write numbers to 1,000" />
+        <GoalButton {...props} color="secondary" id="1" text="Identify and write numbers to 1,000" />
       </Accordion>
       <Accordion>
         <AccordionSummary
@@ -51,10 +51,10 @@ export default function YearGoals(props) {
           id="panel2a-header">
           <Typography className={classes.heading}>Number Sequence and Order</Typography>
         </AccordionSummary>
-        <GoalButton {...props} id="2" text="Count forwards and say the number one, ten and a hundred after" />
-        <GoalButton {...props} id="3" text="Count forwards and say the number one, ten and a hundred before" />
-        <GoalButton {...props} id="4" text="Order numbers" />
-        <GoalButton {...props} id="5" text="Round three-digit numbers to the nearest ten and hundred" />
+        <GoalButton {...props} color="secondary" id="2" text="Count forwards and say the number one, ten and a hundred after" />
+        <GoalButton {...props} color="secondary" id="3" text="Count forwards and say the number one, ten and a hundred before" />
+        <GoalButton {...props} color="secondary" id="4" text="Order numbers" />
+        <GoalButton {...props} color="primary" id="5" text="Round three-digit numbers to the nearest ten and hundred" />
       </Accordion>
       <Accordion>
         <AccordionSummary
@@ -63,7 +63,7 @@ export default function YearGoals(props) {
           id="panel3a-header">
           <Typography className={classes.heading}>Place Value</Typography>
         </AccordionSummary>
-        <GoalButton id="6" text="Explain the place value of hundreds" />
+        <GoalButton id="6" color="primary" text="Explain the place value of hundreds" />
         <GoalButton id="7" text="Recall the number of tens and hundreds in three-digit numbers" />
       </Accordion>
       <Accordion>

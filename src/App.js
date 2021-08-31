@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import orange from '@material-ui/core/colors/orange';
+import teal from '@material-ui/core/colors/teal';
 import { motion, AnimatePresence } from 'framer-motion';
 import './index.css';
 
@@ -14,12 +15,13 @@ import Quiz from './Quiz.js';
 const theme = createTheme({
   palette: {
     primary: orange,
+    secondary: teal,
   },
 });
 
 export default function App() {
-  const [yearmenu, setYearmenu] = useState(false);
-  const [goalsmenu, setGoalsMenu] = useState(true);
+  const [yearmenu, setYearmenu] = useState(true);
+  const [goalsmenu, setGoalsMenu] = useState(false);
   const [showquiz, setShowQuiz] = useState(false);
   const [goalsYear, setGoalsYear] = useState(3);
   

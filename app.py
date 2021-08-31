@@ -9,7 +9,7 @@ CORS(app)
 class getGoals(Resource):
     def get(self, id):
         return "honk"
-        # TODO: build API to return the goals for each of the dive categories at each level
+        # TODO: build API to return the goals for each of the five categories at each level
 
 class Y3NumSeq(Resource):
     def get(self, id):
@@ -21,7 +21,7 @@ class Y3NumSeq(Resource):
                 {'qtext': 'What is 841 rounded to the nearest hundred?', 'answer':  '800'},
                 {'qtext': 'What is 652 rounded to the nearest hundred?', 'answer':  '700'},
             ]
-            return jsonify(questions)
+            return jsonify(year=3, goaltext='Round 3 digit numbers to the nearest ten or hundred', questions=questions)
         else:
             return "HONK"
         

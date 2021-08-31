@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Quiz(props) {
   const classes = useStyles();
-  const [questions, setQuestions] = useState();
+  const [questionData, setQuestionData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -33,19 +33,22 @@ export default function Quiz(props) {
 
   useEffect(() => {
     axios.get(url).then((response) => {
-    setQuestions(response.data);
+    setQuestionData(response.data);
     })
   }, []);
+  console.log(questionData);
+
+  // var questions = questionData.questions;
 
   function Question(props) {
     return (
       <div>
         <Typography className={classes.heading}>
-          Question {currentQuestion+1}{questions && (' of ' + questions.length)}
+          Question {currentQuestion+1}{questionData && (' of ' + questionData['questions'].length)}
         </Typography>
         <br />
         <Typography align="left" variant="body2">
-          {questions && questions[currentQuestion].qtext}
+          {questionData && questionData['questions'][currentQuestion].qtext}
         </Typography>
         <br />
       </div>
@@ -60,10 +63,10 @@ export default function Quiz(props) {
     }
 
     function handleSubmit(e) {
-      if (answer === questions[currentQuestion].answer) {
+      if (answer === questionData['questions'][currentQuestion].answer) {
         setScore(score + 1);
       }
-      if (currentQuestion+1 < questions.length) {
+      if (currentQuestion+1 < questionData['questions'].length) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setShowScore(true);
@@ -83,7 +86,7 @@ export default function Quiz(props) {
     const body = 
       showScore ? 
         <>
-          <Score score={score} max={questions.length} time={13}/>
+          <Score score={score} max={questionData['questions'].length} time={13}/>
           <br />
           <HeroUpload />
         </>
@@ -103,6 +106,9 @@ export default function Quiz(props) {
   return (
     <Card elevation={2}>
       <CardContent>
+        <Typography align="center" variant="body1">
+          <h4>Y{questionData.year}: {questionData.goaltext}</h4>
+        </Typography>
         <CardBody />
       </CardContent>
       <CardActions>
